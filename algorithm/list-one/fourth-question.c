@@ -3,6 +3,9 @@
 int main() {
   int intOne, intTwo;
 
+  printf("Forneça dois valores inteiros: ");
+  scanf("%d%d", &intOne, &intTwo);
+
   if (intOne == intTwo)
     printf("Os valores são iguais");
   else {
