@@ -1,20 +1,20 @@
 #include <stdio.h>
 
 int main() {
-  float valOne, valTwo, valThree;
+  int valOne, valTwo, valThree;
 
   printf("Forneça três valores: ");
-  scanf("%f%f%f", &valOne, &valTwo, &valThree);
+  scanf("%d%d%d", &valOne, &valTwo, &valThree);
 
   if (valOne > valTwo) {
     if (valOne > valThree)
-      printf("%f é maior", valOne);
+      printf("%d é maior", valOne);
     else
-      printf("%f é maior", valThree);
+      printf("%d é maior", valThree);
   } else {
     if (valTwo > valThree)
-      printf("%f é maior", valTwo);
+      printf("%d é maior", valTwo);
     else
-      printf("%f é maior", valThree);       
+      printf("%d é maior", valThree);       
   }
 }
