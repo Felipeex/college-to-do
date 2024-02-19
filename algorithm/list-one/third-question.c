@@ -1,13 +1,13 @@
 #include <stdio.h>
 
 int main() {
-  float numerador, denominador, div;
+  int numerador, denominador, rest;
 
   printf("Forneça um numerador e um denominador: ");
-  scanf("%f%f", &numerador, &denominador);
+  scanf("%d%d", &numerador, &denominador);
 
-  div = numerador / denominador;
-  printf("Resultado da divisão = %f", div);
+  rest = numerador % denominador;
+  printf("Resto da divisão = %d", rest);
 
   return 0;
 }
