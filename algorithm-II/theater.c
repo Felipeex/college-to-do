@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <conio.h>
+#include "conio.h"
 #include <stdlib.h>
 #include <ctype.h>
 
@@ -11,7 +11,7 @@ int main() {
   int seats[LINES][QUANTITY_OF_SEATS] = {0}, column, row, freeSeats = 0, occupiedSeats = 0;
 
   do {
-    system("cls"); // clear console windows
+    system("clear"); // clear console windows
 
     printf("\nSeja bem-vindo ao sistema de gerenciamento.\n");
     printf("[A] Inicializar Reservas\n");
@@ -24,12 +24,12 @@ int main() {
 
     switch(option) {
       case 'A':
-        system("cls"); // clear console windows
+        system("clear"); // clear console windows
         printf("\nInicializar Reservas");
         getch();
         break;
       case 'B':
-        system("cls"); // clear console windows
+        system("clear"); // clear console windows
         printf("\n### Reservar Poltrona ###\n\n");
 
         printf("Qual a linha da poltrona a ser reservada? ");
@@ -44,7 +44,8 @@ int main() {
           getch();
         } else {
           printf("Voce realmente deseja criar uma reserva, para a linha %d na poltrona numero %d? (S ou N)", row, column);
-          request = toupper(getch());
+          scanf(" %c", &request);
+          request = toupper(request);
 
           if (request == 'S')
             seats[row][column] = 1;
@@ -52,7 +53,7 @@ int main() {
 
         break;
       case 'C':
-        system("cls"); // clear console windows
+        system("clear"); // clear console windows
         printf("\n### Quantidade de Poltronas Ocupadas/Livres ###\n\n");
 
         occupiedSeats = 0;
@@ -73,7 +74,7 @@ int main() {
         getch();
         break;
       case 'D':
-        system("cls"); // clear console windows
+        system("clear"); // clear console windows
         printf("\n### Mapa de Ocupacao ###\n\n");
 
         for(row = 0; row < LINES; row++) {
@@ -90,7 +91,7 @@ int main() {
         getch();
         break;
       case 'E':
-        system("cls"); // clear console windows
+        system("clear"); // clear console windows
         printf("\nConsulta Situacao de Poltrona");
         getch();
         break;
