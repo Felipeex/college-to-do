@@ -32,7 +32,9 @@ struct Person {
   Birthday birthday;
 };
 
-#define PERSON_LIST_FISIC_SIZE 100
+#define NORMAL  "\x1B[0m"
+#define RED  "\x1B[31m"
+#define PERSON_LIST_FISIC_SIZE 2
 
 int menu() {
   system("clear");
@@ -45,7 +47,7 @@ int menu() {
   return toupper(getche());
 }
 
-void insertPerson(Person personList, int personLogicSize);
+void insertPerson(Person personList[], int &personLogicSize);
 
 int main() {
   Person personList[PERSON_LIST_FISIC_SIZE];
@@ -56,63 +58,55 @@ int main() {
 
     switch(option) {
       case 'B':
-        insertPerson(personList[PERSON_LIST_FISIC_SIZE], personLogicSize);
+        insertPerson(personList, personLogicSize);
         break;
     }
   } while(option != 27);
 }
 
-void insertPerson(Person personList, int personLogicSize) {
+void insertPerson(Person personList[], int &personLogicSize) {
   Person newPerson;
-  
-  system("clear");
-  if (personLogicSize < PERSON_LIST_FISIC_SIZE) {
-    printf("\nDados pessoais da nova pessoa");
 
-    printf("\nNome: ");
-    fgets(newPerson.name, 120, stdin);
-    fflush(stdin);
+  do {
+    if (personLogicSize < PERSON_LIST_FISIC_SIZE) {
+      system("clear");
+      printf(RED "\nDados pessoais da nova pessoa\n\n" NORMAL);
 
-    printf("\nE-mail: ");
-    fgets(newPerson.email, 40, stdin);
-    fflush(stdin);
+      printf("Nome: ");
+      fgets(newPerson.name, 120, stdin);
+      fflush(stdin);
 
-    printf("\nDDD: ");
-    scanf("%d", &newPerson.phone.DDD);
+      printf("E-mail: ");
+      scanf("%s", newPerson.email);
+      fflush(stdin);
 
-    printf("\nNumero de telefone: ");
-    scanf("%d", &newPerson.phone.number);
-    
-    printf("\nDia do nascimento: ");
-    scanf("%d", &newPerson.birthday.day);
-    
-    printf("\nMes de nascimento: ");
-    scanf("%d", &newPerson.birthday.month);
-    
-    printf("\nAno de nascimento: ");
-    scanf("%d", &newPerson.birthday.year);
+      printf("Numero de telefone (EX: 18 996785231): ");
+      scanf("%d%d", &newPerson.phone.DDD, &newPerson.phone.number);
 
-    fflush(stdin);
-    printf("\nObservacoes: ");
-    fgets(newPerson.description, 300, stdin);
+      printf("Data de nascimento (EX: 09 03 2006): ");
+      scanf("%d%d%d", &newPerson.birthday.day, &newPerson.birthday.month, &newPerson.birthday.year);
 
-    system("clear");
-    printf("\n\nEndereco da nova pessoa");
+      fflush(stdin);
+      printf("Observacoes: ");
+      fgets(newPerson.description, 300, stdin);
 
-    printf("\nRua: ");
-    fgets(newPerson.address.name, 120, stdin);
-    fflush(stdin);
+      printf("\n\n// Endereco da nova pessoa \\\n");
 
-    printf("\nCidade: ");
-    fgets(newPerson.address.city, 60, stdin);
-    fflush(stdin);
+      printf("Rua: ");
+      fgets(newPerson.address.name, 120, stdin);
+      fflush(stdin);
 
-    printf("\nEstado: ");
-    fgets(newPerson.address.state, 60, stdin);
-    fflush(stdin);
+      printf("Cidade: ");
+      fgets(newPerson.address.city, 60, stdin);
+      fflush(stdin);
 
-    printf("\nPais: ");
-    fgets(newPerson.address.country, 60, stdin);
-    fflush(stdin);
-  } else printf("\nLista de pessoas está cheia.");
+      printf("Estado: ");
+      fgets(newPerson.address.state, 60, stdin);
+      fflush(stdin);
+
+      printf("Pais: ");
+      fgets(newPerson.address.country, 60, stdin);
+      fflush(stdin);
+    } else printf("\n Lista de telefones cheia.");
+  } while(personLogicSize < PERSON_LIST_FISIC_SIZE && strlen(newPerson.name) > 1);
 }
