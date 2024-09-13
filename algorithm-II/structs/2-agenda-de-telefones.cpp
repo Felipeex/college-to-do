@@ -34,20 +34,21 @@ struct Person {
 
 #define NORMAL  "\x1B[0m"
 #define RED  "\x1B[31m"
+#define WHITE   "\x1B[37m"
 #define PERSON_LIST_FISIC_SIZE 2
 
 int menu() {
   system("clear");
   
-  printf("\n# AGENDA DE TELEFONES #\n");
+  printf(RED "\nAGENDA DE TELEFONES\n" NORMAL);
   printf("\n[A] Buscar pelo primeiro nome.");
-  printf("\n[B] Insirir uma nova pessoa (ORDEM ALFABETICA).");
-
-  printf("\n\nOpção: ");
-  return toupper(getche());
+  printf("\n[B] Insirir uma nova pessoa (ORDEM ALFABETICA).\n");
+  return toupper(getch());
 }
 
 void insertPerson(Person personList[], int &personLogicSize);
+void viewPerson(Person person);
+int request(char message[]);
 
 int main() {
   Person personList[PERSON_LIST_FISIC_SIZE];
@@ -70,7 +71,7 @@ void insertPerson(Person personList[], int &personLogicSize) {
   do {
     if (personLogicSize < PERSON_LIST_FISIC_SIZE) {
       system("clear");
-      printf(RED "\nDados pessoais da nova pessoa\n\n" NORMAL);
+      printf(RED "\nDados pessoais da nova pessoa " NORMAL "#%d\n\n", personLogicSize + 1);
 
       printf("Nome: ");
       fgets(newPerson.name, 120, stdin);
@@ -90,7 +91,7 @@ void insertPerson(Person personList[], int &personLogicSize) {
       printf("Observacoes: ");
       fgets(newPerson.description, 300, stdin);
 
-      printf("\n\n// Endereco da nova pessoa \\\n");
+      printf(RED "\n\nEndereco da nova pessoa\n" NORMAL);
 
       printf("Rua: ");
       fgets(newPerson.address.name, 120, stdin);
@@ -107,6 +108,15 @@ void insertPerson(Person personList[], int &personLogicSize) {
       printf("Pais: ");
       fgets(newPerson.address.country, 60, stdin);
       fflush(stdin);
+
+      request("Você realmente deseja criar a pessoa #1");
     } else printf("\n Lista de telefones cheia.");
   } while(personLogicSize < PERSON_LIST_FISIC_SIZE && strlen(newPerson.name) > 1);
+}
+
+void viewPerson(Person person) {}
+
+int request(char message[]) {
+  printf(message);
+  return toupper(getch());
 }
