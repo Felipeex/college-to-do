@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <ctype.h>
-#include "../conio.h"
+#include <string.h>
+#include <stdlib.h>
+#include "conio.h"
+#include <locale.h>
+#include <windows.h>
 
 struct Address {
   char name[120];
@@ -34,11 +38,14 @@ struct Person {
 
 #define NORMAL  "\x1B[0m"
 #define RED  "\x1B[31m"
+#define GREEN  "\x1B[32m"
 #define WHITE   "\x1B[37m"
+
 #define PERSON_LIST_FISIC_SIZE 2
 
 int menu() {
   system("clear");
+  system("cls");
   
   printf(RED "\nAGENDA DE TELEFONES\n" NORMAL);
   printf("\n[A] Buscar pelo primeiro nome.");
@@ -51,6 +58,8 @@ void viewPerson(Person person);
 int request(char message[]);
 
 int main() {
+  SetConsoleOutputCP(CP_UTF8);
+
   Person personList[PERSON_LIST_FISIC_SIZE];
   int option, personLogicSize = 0;
 
@@ -71,45 +80,49 @@ void insertPerson(Person personList[], int &personLogicSize) {
   do {
     if (personLogicSize < PERSON_LIST_FISIC_SIZE) {
       system("clear");
-      printf(RED "\nDados pessoais da nova pessoa " NORMAL "#%d\n\n", personLogicSize + 1);
+      system("cls");
+      printf(RED "\nDados pessoais da nova pessoa " NORMAL "#%d\n", personLogicSize + 1);
 
       printf("Nome: ");
       fgets(newPerson.name, 120, stdin);
       fflush(stdin);
 
-      printf("E-mail: ");
-      scanf("%s", newPerson.email);
-      fflush(stdin);
 
-      printf("Numero de telefone (EX: 18 996785231): ");
-      scanf("%d%d", &newPerson.phone.DDD, &newPerson.phone.number);
+      if (strlen(newPerson.name) > 1) {
+        printf("E-mail: ");
+        scanf("%s", newPerson.email);
+        fflush(stdin);
 
-      printf("Data de nascimento (EX: 09 03 2006): ");
-      scanf("%d%d%d", &newPerson.birthday.day, &newPerson.birthday.month, &newPerson.birthday.year);
+        printf("Número de telefone (EX: 18 996785231): ");
+        scanf("%d%d", &newPerson.phone.DDD, &newPerson.phone.number);
 
-      fflush(stdin);
-      printf("Observacoes: ");
-      fgets(newPerson.description, 300, stdin);
+        printf("Data de nascimento (EX: 09 03 2006): ");
+        scanf("%d%d%d", &newPerson.birthday.day, &newPerson.birthday.month, &newPerson.birthday.year);
 
-      printf(RED "\n\nEndereco da nova pessoa\n" NORMAL);
+        fflush(stdin);
+        printf("Observacoes: ");
+        fgets(newPerson.description, 300, stdin);
 
-      printf("Rua: ");
-      fgets(newPerson.address.name, 120, stdin);
-      fflush(stdin);
+        printf(RED "\nEndereço da nova pessoa\n" NORMAL);
 
-      printf("Cidade: ");
-      fgets(newPerson.address.city, 60, stdin);
-      fflush(stdin);
+        printf("Rua: ");
+        fgets(newPerson.address.name, 120, stdin);
+        fflush(stdin);
 
-      printf("Estado: ");
-      fgets(newPerson.address.state, 60, stdin);
-      fflush(stdin);
+        printf("Cidade: ");
+        fgets(newPerson.address.city, 60, stdin);
+        fflush(stdin);
 
-      printf("Pais: ");
-      fgets(newPerson.address.country, 60, stdin);
-      fflush(stdin);
+        printf("Estado: ");
+        fgets(newPerson.address.state, 60, stdin);
+        fflush(stdin);
 
-      request("Você realmente deseja criar a pessoa #1");
+        printf("Pais: ");
+        fgets(newPerson.address.country, 60, stdin);
+        fflush(stdin);
+
+        request("Você realmente deseja criar a pessoa #1");
+      }
     } else printf("\n Lista de telefones cheia.");
   } while(personLogicSize < PERSON_LIST_FISIC_SIZE && strlen(newPerson.name) > 1);
 }
@@ -117,6 +130,6 @@ void insertPerson(Person personList[], int &personLogicSize) {
 void viewPerson(Person person) {}
 
 int request(char message[]) {
-  printf(message);
+  printf("\n%s:" GREEN "\n[S] Sim" RED " [N] Não\n" NORMAL, message);
   return toupper(getch());
 }
