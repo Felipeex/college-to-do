@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>Document</title>
+    <style>
+      section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        flex-direction: column;
+      }
+
+      .informations {
+        display: flex;
+        gap: 50px;
+
+        background-color: aqua;
+      }
+
+      th {
+        border: 1px solid black;
+      }
+
+      table tr:nth-child(odd) {
+        background-color: #fffaaa;
+      }
+
+      table tr:nth-child(even) {
+        background-color: #ffee00;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <span>*** Listas ***</span>
+      <ol>
+        <li>W3C</li>
+        <li>HTML</li>
+        <li>
+          CSS
+          <ul>
+            <li>Formatação</li>
+            <li>Imagens</li>
+            <li>Bordas</li>
+            <li>Links</li>
+          </ul>
+        </li>
+      </ol>
+
+      <span style="border: 1px solid black; padding: 5px"
+        >Faculdade de informatica de presidente prudente - FIPP 🌟</span
+      >
+
+      <table>
+        <tr>
+          <caption>
+            Nuvem de palavras
+          </caption>
+          <th colspan="2">Atitude</th>
+          <th>Colaboração</th>
+          <th rowspan="3">Estudo</th>
+        </tr>
+
+        <tr>
+          <th>Humildade</th>
+          <th>Dedicação</th>
+          <th>Motivacão</th>
+        </tr>
+
+        <tr>
+          <th>Educação</th>
+          <th colspan="2">Comprometimento</th>
+        </tr>
+
+        <tr>
+          <th colspan="4">Responsabilidade</th>
+        </tr>
+
+        <tr>
+          <th colspan="2">FIPP</th>
+          <th colspan="2">UNOESTE</th>
+        </tr>
+      </table>
+
+      <div class="informations">
+        <span>Aluno(a): Felipe Lima Santos</span>
+        <span>RA: 24.26.1354-0</span>
+      </div>
+    </section>
+  </body>
+</html>

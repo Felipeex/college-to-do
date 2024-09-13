@@ -289,7 +289,7 @@ int putch(const char c)
 
 int cputs(const char*str)
 {
-    printf(str);
+    printf("%s", str);
     return 0;
 }
 
@@ -308,7 +308,10 @@ int wherexy(int *x, int *y)
         lx = lx * 10 + in - '0';
     *x = lx;
     *y = ly;
+
+    return 0;
 }
+
 int wherex()
 {
     int x=0,y=0;
