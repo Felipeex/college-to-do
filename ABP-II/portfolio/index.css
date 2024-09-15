@@ -124,3 +124,150 @@ header span > b::before {
     opacity: 1;
   }
 }
+
+.background-division {
+  width: 100%;
+  height: 150px;
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+
+  margin-top: -150px;
+}
+
+.my-history {
+  margin-top: 150px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.my-history .title > span {
+  font-size: 17px;
+  opacity: 0.6;
+}
+
+.my-history .title h2 {
+  font-size: 34px;
+  font-weight: bold;
+}
+
+.my-history .title h2 span {
+  color: #08d9d6;
+}
+
+.my-history .title > div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.timeline {
+  margin-top: 20px;
+}
+
+.timeline .vertical-line {
+  position: relative;
+
+  width: 55%;
+  left: 45%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.timeline .vertical-line::before {
+  content: "";
+
+  position: absolute;
+  left: 42.5px;
+  transform: translate(42.5px, 0);
+
+  width: 2px;
+  height: 200vh;
+
+  background: #fff;
+  opacity: 0.2;
+
+  border-radius: 4px;
+}
+
+.timeline .time-point {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+}
+
+.timeline .time-point .label {
+  margin-right: 10px;
+
+  background: rgba(8, 217, 214, 0.5);
+
+  font-weight: 500;
+  color: #0cfffc;
+
+  width: 35px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 2px 18px;
+  border-radius: 12px;
+}
+
+.timeline .time-point .point {
+  width: 10px;
+  height: 10px;
+  background: #08d9d6;
+
+  border-radius: 50%;
+}
+
+.timeline .time-point .content {
+  margin-left: 20px;
+
+  width: 65%;
+  height: min-content;
+
+  border: 1.5px solid #08d9d6;
+  padding: 16px;
+  border-radius: 12px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.timeline .time-point .content > h2 {
+  color: #08d9d6;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.timeline .time-point .content > p {
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.timeline .time-point .content .images {
+  flex: 1;
+  display: flex;
+  gap: 10px;
+}
+
+.timeline .time-point .content .images img {
+  width: 31%;
+  height: 78%;
+  object-fit: cover;
+
+  border-radius: 6.5px;
+}
+
+.timeline .time-point .contents {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+
+  align-items: center;
+}
