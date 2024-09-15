@@ -10,6 +10,19 @@ body {
   font-family: "Montserrat";
 }
 
+body::-webkit-scrollbar {
+  width: 4px;
+  background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #ff2e63;
+}
+
+body::-webkit-scrollbar-track {
+  background: #0e0e0e;
+}
+
 header {
   height: 100vh;
 
@@ -162,14 +175,18 @@ header span > b::before {
 }
 
 .timeline {
+  width: 100%;
   margin-top: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .timeline .vertical-line {
   position: relative;
 
-  width: 55%;
-  left: 45%;
+  left: 200px;
 
   display: flex;
   flex-direction: column;
@@ -250,15 +267,17 @@ header span > b::before {
   font-weight: normal;
 }
 
+.timeline .time-point .content > p > b {
+  color: #08d9d6;
+}
+
 .timeline .time-point .content .images {
-  flex: 1;
   display: flex;
   gap: 10px;
 }
 
 .timeline .time-point .content .images img {
-  width: 31%;
-  height: 78%;
+  width: 100%;
   object-fit: cover;
 
   border-radius: 6.5px;
@@ -270,4 +289,23 @@ header span > b::before {
   gap: 25px;
 
   align-items: center;
+}
+
+.timeline .time-point.left {
+  left: -67%;
+
+  flex-direction: row-reverse;
+  align-self: flex-start;
+}
+
+.timeline .time-point.left .content {
+  margin-left: 0px;
+}
+
+.timeline .time-point.left .point {
+  margin-left: 20px;
+}
+
+.timeline .time-point.left .label {
+  margin-left: 10px;
 }
