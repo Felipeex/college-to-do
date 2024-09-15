@@ -33,7 +33,7 @@ header {
   justify-content: center;
   align-items: center;
 
-  background: url(./assets/background.png) no-repeat;
+  background: url(./assets/background/background.png) no-repeat;
   background-size: cover;
 }
 
@@ -135,7 +135,7 @@ header span > b::before {
   width: 141px;
   height: 12px;
 
-  background: url("./assets/span-inline-vector.svg");
+  background: url(./assets/background/span-inline-vector.svg);
 }
 
 .felipeex-stand-up {
@@ -226,7 +226,7 @@ header span > b::before {
   transform: translate(42.5px, 0);
 
   width: 2px;
-  height: 3000px;
+  height: 3830px;
 
   background: #fff;
   opacity: 0.2;
@@ -341,4 +341,37 @@ header span > b::before {
 
 .timeline .time-point.left .label {
   margin-left: 10px;
+}
+
+footer {
+  margin-top: -10px;
+
+  background: #0e0e0e;
+  padding-bottom: 100px;
+}
+
+footer section {
+  max-width: 80%;
+  margin: auto;
+
+  gap: 100px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer section div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+footer section div > p {
+  opacity: 0.7;
+}
+
+footer img {
+  width: 400px;
+  border-radius: 8px;
 }
