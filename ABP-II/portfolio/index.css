@@ -7,6 +7,7 @@ body {
   background: black;
   color: white;
 
+  overflow-x: hidden;
   font-family: "Montserrat";
 }
 
@@ -46,6 +47,26 @@ header h1 {
   color: #ff2e63;
 
   animation: 1s h1-span-animation forwards;
+}
+
+::selection {
+  background: #08d9d6;
+}
+
+a::selection {
+  color: #fff;
+}
+
+b::selection {
+  color: #fff;
+}
+
+a {
+  color: #08d9d6;
+}
+
+a:visited {
+  color: #049b98;
 }
 
 @keyframes h1-span-animation {
@@ -168,6 +189,10 @@ header span > b::before {
   color: #08d9d6;
 }
 
+.my-history .title h2 span::selection {
+  color: #fff;
+}
+
 .my-history .title > div {
   display: flex;
   align-items: center;
@@ -201,7 +226,7 @@ header span > b::before {
   transform: translate(42.5px, 0);
 
   width: 2px;
-  height: 200vh;
+  height: 3000px;
 
   background: #fff;
   opacity: 0.2;
@@ -262,6 +287,10 @@ header span > b::before {
   font-weight: bold;
 }
 
+.timeline .time-point .content > h2::selection {
+  color: #fff;
+}
+
 .timeline .time-point .content > p {
   font-size: 14px;
   font-weight: normal;
@@ -269,6 +298,10 @@ header span > b::before {
 
 .timeline .time-point .content > p > b {
   color: #08d9d6;
+}
+
+.timeline .time-point .content > p > b::selection {
+  color: #fff;
 }
 
 .timeline .time-point .content .images {
@@ -292,7 +325,7 @@ header span > b::before {
 }
 
 .timeline .time-point.left {
-  left: -67%;
+  left: -67.2%;
 
   flex-direction: row-reverse;
   align-self: flex-start;
