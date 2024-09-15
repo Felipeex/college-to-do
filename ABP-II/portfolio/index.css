@@ -1,0 +1,126 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: black;
+  color: white;
+
+  font-family: "Montserrat";
+}
+
+header {
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  background: url(./assets/background.png) no-repeat;
+  background-size: cover;
+}
+
+header h1 {
+  position: relative;
+
+  font-family: "Jura";
+  font-size: 116px;
+  font-weight: normal;
+  line-height: 150px;
+  color: #ff2e63;
+
+  animation: 1s h1-span-animation forwards;
+}
+
+@keyframes h1-span-animation {
+  from {
+    opacity: 0;
+    margin-bottom: -20px;
+  }
+
+  to {
+    opacity: 1;
+    margin-bottom: 0;
+  }
+}
+
+header h1 > img {
+  position: absolute;
+
+  z-index: 1;
+}
+
+header span {
+  font-size: 21px;
+
+  animation: 1s header-span-animation forwards;
+}
+
+@keyframes header-span-animation {
+  from {
+    opacity: 0;
+    margin-bottom: -150px;
+  }
+
+  to {
+    opacity: 1;
+    margin-bottom: 0;
+  }
+}
+
+header span > b {
+  position: relative;
+  color: #08d9d6;
+}
+
+header span > b::after {
+  content: "";
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 115px;
+  height: 115px;
+  background: #08d9d6;
+
+  border-radius: 50%;
+  filter: blur(80px);
+}
+
+header span > b::before {
+  content: "";
+
+  position: absolute;
+  bottom: -15px;
+
+  width: 141px;
+  height: 12px;
+
+  background: url("./assets/span-inline-vector.svg");
+}
+
+.felipeex-stand-up {
+  position: absolute;
+
+  left: 0;
+  bottom: 0;
+
+  animation: 800ms felipeex-stand-up-enter-animation forwards;
+}
+
+@keyframes felipeex-stand-up-enter-animation {
+  from {
+    left: -254px;
+    opacity: 0;
+  }
+
+  to {
+    left: 0;
+    opacity: 1;
+  }
+}
