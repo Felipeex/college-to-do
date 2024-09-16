@@ -39,6 +39,7 @@ struct Person {
 #define NORMAL  "\x1B[0m"
 #define RED  "\x1B[31m"
 #define GREEN  "\x1B[32m"
+#define MAGENTA  "\x1B[35m"
 #define WHITE   "\x1B[37m"
 
 #define PERSON_LIST_FISIC_SIZE 2
@@ -53,40 +54,45 @@ int menu() {
   return toupper(getch());
 }
 
-void insertPerson(Person personList[], int &personLogicSize);
+void findPersonByName(Person personList[], int &personListLogicSize);
+int findPersonIndexByName(Person personList[], int &personListLogicSize, char name[80]);
+void insertPerson(Person personList[], int &personListLogicSize);
 void viewPerson(Person person);
+
 int request(char message[]);
 
 int main() {
   SetConsoleOutputCP(CP_UTF8);
 
   Person personList[PERSON_LIST_FISIC_SIZE];
-  int option, personLogicSize = 0;
+  int option, personListLogicSize = 0;
 
   do {
     option = menu();
 
     switch(option) {
+      case 'A':
+        findPersonByName(personList, personListLogicSize);
+        break;
       case 'B':
-        insertPerson(personList, personLogicSize);
+        insertPerson(personList, personListLogicSize);
         break;
     }
   } while(option != 27);
 }
 
-void insertPerson(Person personList[], int &personLogicSize) {
+void insertPerson(Person personList[], int &personListLogicSize) {
   Person newPerson;
 
   do {
-    if (personLogicSize < PERSON_LIST_FISIC_SIZE) {
+    if (personListLogicSize < PERSON_LIST_FISIC_SIZE) {
       system("clear");
       system("cls");
-      printf(RED "\nDados pessoais da nova pessoa " NORMAL "#%d\n", personLogicSize + 1);
+      printf(RED "\nDados pessoais da nova pessoa " NORMAL "#%d\n", personListLogicSize + 1);
 
       printf("Nome: ");
-      fgets(newPerson.name, 120, stdin);
+      fgets(newPerson.name, 80, stdin);
       fflush(stdin);
-
 
       if (strlen(newPerson.name) > 1) {
         printf("E-mail: ");
@@ -121,13 +127,71 @@ void insertPerson(Person personList[], int &personLogicSize) {
         fgets(newPerson.address.country, 60, stdin);
         fflush(stdin);
 
-        request("Você realmente deseja criar a pessoa #1");
+        if (request("Você realmente deseja criar a pessoa #1") == 'S') {
+          personList[personListLogicSize] = newPerson;
+          personListLogicSize++;
+        }
       }
     } else printf("\n Lista de telefones cheia.");
-  } while(personLogicSize < PERSON_LIST_FISIC_SIZE && strlen(newPerson.name) > 1);
+  } while(personListLogicSize < PERSON_LIST_FISIC_SIZE && strlen(newPerson.name) > 1);
 }
 
-void viewPerson(Person person) {}
+
+
+void findPersonByName(Person personList[], int &personListLogicSize) {
+  char name[80];
+
+  do {
+    system("clear");
+    system("cls");
+    printf(RED "\nProcura pessoa pelo nome\n" NORMAL);
+
+    printf("Nome: ");
+    fgets(name, 120, stdin);
+    fflush(stdin);
+
+    if (strlen(name) > 1) {
+      int personIndex = findPersonIndexByName(personList, personListLogicSize, name);
+
+      if (personIndex >= 0) {
+        viewPerson(personList[personIndex]);
+      } else printf("Pessoa não encontrada. \n");
+
+      getch();
+    }
+    
+  } while(strlen(name) > 1);
+
+  getch();
+}
+
+int findPersonIndexByName(Person personList[], int &personListLogicSize, char name[80]) {
+  int index = 0;
+
+  while(index < personListLogicSize && stricmp(personList[index].name, name) != 0)
+    index++;
+
+  if (index < personListLogicSize) {
+    return index;
+  }
+
+  return -1;
+}
+
+void viewPerson(Person person) {
+  printf(RED "\nDados pessoais\n" NORMAL);
+  printf("Nome: %s", person.name);
+  printf("E-mail: %s\n", person.email);
+  printf("Número de telefone: (%d) (%d)\n", person.phone.DDD, person.phone.number);
+  printf("Data de nascimento: %d/%d/%d\n", person.birthday.day, person.birthday.month, person.birthday.year);
+  printf("Observações: %s\n", person.description);
+
+  printf(RED "\nEndereço\n" NORMAL);
+  printf(MAGENTA "Rua: " WHITE "%s", person.address.name);
+  printf("Cidade: %s", person.address.city);
+  printf("Estado: %s", person.address.state);
+  printf("Pais: %s", person.address.country);
+}
 
 int request(char message[]) {
   printf("\n%s:" GREEN "\n[S] Sim" RED " [N] Não\n" NORMAL, message);
