@@ -10,6 +10,12 @@ print(games.loc[games["Venda_Global"] > 25])
 actionAndSportsGames = games.loc[(games["Genero"] == "Ação") | (games["Genero"] == "Esportes")]
 print(actionAndSportsGames)
 
+# 3. Liste os dados acrescentando quatro colunas adicionais por meio do comando Summarize agrupando por Gênero e indicando:
+selectedColumns = games[["Nome", "Fabricante"]]
+groupingByCompany = selectedColumns.groupby("Fabricante")
+quantityOfGamesPerCompany = groupingByCompany.size()
+print(quantityOfGamesPerCompany.reset_index(name = "Quantidade_de_jogos"))
+
 # 6. Qual o fabricante que teve maior venda global?
 gameWithMaxGlobalSells = games.Venda_Global.idxmax()
 print("Fabricante com maior venda global:", games.iloc[gameWithMaxGlobalSells].Fabricante)
