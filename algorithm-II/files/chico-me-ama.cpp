@@ -2,10 +2,16 @@
 #include <ctype.h>
 #include <string.h>
 
+#include "./lib/conio.h"
+
 struct TpAluno {
   char RA[13];
   char nome[80];
 };
+
+int BuscarAlunoRA(FILE * PtrAluno, char RA[13]) {
+  return 0;
+}
 
 void OrdenarAluno() {
   TpAluno RegA, RegB;
@@ -37,22 +43,43 @@ void OrdenarAluno() {
   }
 }
 
-void CriarAluno() {}
+void CriarAluno() {
+  int pos;
+  TpAluno aluno;
+  FILE * PtrAluno = fopen("Alunos.dat", "ab+");
+
+  printf("RA: ");
+  gets(aluno.RA);
+
+  do {
+    if (PtrAluno != NULL) {
+      if (strlen(aluno.RA) > 0) {
+        pos = BuscarAlunoRA(PtrAluno, aluno.RA);
+
+        if (pos >= 0) {
+          printf("criando... \n");
+          getch();
+        } else { printf("\nEsse RA já existe.\n"); getch(); }
+      }
+    } else { printf("Esse arquivo não existe\n"); getch(); }
+  } while(PtrAluno != NULL && strlen(aluno.RA) > 0);
+}
 
 void AtualizarAluno() {}
 
 void DeletarAluno() {}
 
-void main() {
+int main() {
   int option;
 
+    printf("[A] - Criar Aluno\n");
   do {
-    printf("[A] - Criar Aluno");
 
-    // option = toupper(getch());
+    option = toupper(getch());
 
     switch(option) {
       case 'A':
+        CriarAluno();
         break;
     }
   } while(option != 27);
